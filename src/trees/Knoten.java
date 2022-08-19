@@ -9,6 +9,12 @@ class Knoten {
         this.data = data;
     }
 
+    public Knoten(int data, Knoten links, Knoten rechts) {
+        this.data = data;
+        this.links = links;
+        this.rechts = rechts;
+    }
+
     public String toString() {
         String out = "" + data;
 
