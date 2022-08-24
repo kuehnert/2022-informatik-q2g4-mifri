@@ -1,7 +1,7 @@
 package trees;
 
 public class BinBaum {
-    Knoten wurzel;
+    private Knoten wurzel;
 
     public BinBaum() {
         // Top-Down
@@ -15,8 +15,7 @@ public class BinBaum {
         wurzel.rechts.links = new Knoten(0);
         wurzel.rechts.links.rechts = new Knoten(27);
         wurzel.rechts.rechts = new Knoten(18);
-
-        System.out.println(wurzel);
+        // System.out.println(wurzel);
 
         // Bottom-Up
         Knoten n5 = new Knoten(5, new Knoten(11), null);
@@ -24,10 +23,28 @@ public class BinBaum {
         Knoten n0 = new Knoten(0, null, new Knoten(27));
         Knoten n23 = new Knoten(23, n0, new Knoten(18));
         wurzel = new Knoten(13, n1, n23);
-        System.out.println(wurzel);
+        // System.out.println(wurzel);
+    }
+
+    // sucht nach einer Zahl gesucht
+    // wenn sie vorhanden ist, gib ihren Knoten zurück
+    // sonst null
+    public Knoten suche(int gesucht) {
+        return wurzel.suche(gesucht);
     }
 
     public static void main(String[] args) {
-        new BinBaum();
+        BinBaum bb = new BinBaum();
+        System.out.println(bb.suche(13));
+        System.out.println(bb.suche(1));
+        System.out.println(bb.suche(17));
+        System.out.println(bb.suche(5));
+        System.out.println(bb.suche(11));
+        System.out.println(bb.suche(23));
+        System.out.println(bb.suche(0));
+        System.out.println(bb.suche(27));
+        System.out.println(bb.suche(18));
+        System.out.println(bb.suche(-99999));
+        System.out.println(bb.suche(99999));
     }
 }

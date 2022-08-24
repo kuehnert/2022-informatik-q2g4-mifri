@@ -11,25 +11,41 @@ public class BinSuchBaum {
         wurzel = new Knoten(Integer.parseInt(zahlen[0]));
 
         for (int i = 1; i < zahlen.length; i++) {
-            int zahl = Integer.parseInt(zahlen[i]);
-            Knoten runner = wurzel;
+            einfuegen(Integer.parseInt(zahlen[i]));
+        }
+    }
 
+    public void einfuegen(int zahl) {
+        Knoten runner = wurzel;
+        // Erstelle neuen Knoten mit zahl
+        Knoten neuerKnoten = new Knoten(zahl);
+        boolean fertig = false;
+
+        while (!fertig) {
             // Vergleiche runner.data mit zahl
             // Wenn zahl kleiner ist:
-            //     Wenn runner.links existiert:
-            //         Setze runner auf runner.links
-            //     Sonst:
-            //         Erstelle neuen Knoten mit zahl
-            //         Setze runner.links auf neuen Knoten
-            // Sonst:
-            //     Wenn runner.rechts existiert:
-            //         Setze runner auf runner.rechts
-            //     Sonst:
-            //         Erstelle neuen Knoten mit zahl
-            //         Setze runner.rechts auf neuen Knoten
-
+            if (zahl < runner.data) {
+                // Wenn runner.links existiert:
+                if (runner.links != null) {
+                    // Setze runner auf runner.links
+                    runner = runner.links;
+                } else {
+                    // Setze runner.links auf neuen Knoten
+                    runner.links = neuerKnoten;
+                    fertig = true;
+                }
+            } else {
+                // Sonst: Wenn runner.rechts existiert:
+                if (runner.rechts != null) {
+                    runner = runner.rechts;
+                    // Setze runner auf runner.rechts
+                } else {
+                    // Setze runner.rechts auf neuen Knoten
+                    runner.rechts = neuerKnoten;
+                    fertig = true;
+                }
+            }
         }
-
     }
 
     @Override
@@ -37,8 +53,12 @@ public class BinSuchBaum {
         return wurzel.toString();
     }
 
+    public String toStringSortiert() {
+        return wurzel.toStringSortiert();
+    }
+
     public static void main(String[] args) {
         BinSuchBaum b = new BinSuchBaum("8 5 4 6 10 2 1 3 7");
-        System.out.println(b);
+        System.out.println(b.toStringSortiert());
     }
 }
