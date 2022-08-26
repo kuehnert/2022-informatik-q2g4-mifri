@@ -46,5 +46,6 @@ public class BinBaum {
         System.out.println(bb.suche(18));
         System.out.println(bb.suche(-99999));
         System.out.println(bb.suche(99999));
+        System.out.println(bb.toString());
     }
 }

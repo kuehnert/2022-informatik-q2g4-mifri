@@ -1,5 +1,6 @@
 package trees;
 
+import javax.swing.*;
 import java.util.Arrays;
 
 public class BinSuchBaum {
@@ -53,12 +54,12 @@ public class BinSuchBaum {
         return wurzel.toString();
     }
 
-    public String toStringSortiert() {
-        return wurzel.toStringSortiert();
+    public String toString(int methode) {
+        return wurzel.toString(methode);
     }
 
     public static void main(String[] args) {
         BinSuchBaum b = new BinSuchBaum("8 5 4 6 10 2 1 3 7");
-        System.out.println(b.toStringSortiert());
+        System.out.println(b.toString(Knoten.LNR));
     }
 }

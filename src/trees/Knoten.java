@@ -1,6 +1,9 @@
 package trees;
 
 class Knoten {
+    public static final int LNR = 0;
+    public static final int LRN = 1;
+    public static final int NLR = 2;
     int data;
     Knoten links;
     Knoten rechts;
@@ -16,39 +19,76 @@ class Knoten {
     }
 
     public String toString() {
+        return toString(LNR);
+    }
+
+    public String toString(int methode) {
+        switch (methode) {
+            case NLR:
+                return toNLR();
+            case LRN:
+                return toLRN();
+            default:
+                return toLNR();
+        }
+    }
+
+    public String toNLR() {
         String out = "" + data;
 
         // linkes Kind existiert
         if (links != null) { // null != 0
             // Füge den String vom (ganzen) linken TB an
-            out = out + " <" + links.toString() + ">";
+            out = out + " <" + links.toNLR() + ">";
         }
 
         // wenn rechter TB existiert
         if (rechts != null) {
             // Füge den String vom (ganzen) rechten TB an
-            out = out + " [" + rechts.toString() + "]";
+            out = out + " [" + rechts.toNLR() + "]";
         }
 
         return out;
     }
 
-    public String toStringSortiert() {
+    public String toLNR() {
         String out = "";
 
-        // linkes Kind existiert
+        // 1. linkes Kind existiert
         if (links != null) { // null != 0
             // Füge den String vom (ganzen) linken TB an
-            out = out + links.toStringSortiert();
+            out = out + links.toLNR();
         }
 
+        // 2. Node
         out = out + " " + data;
 
-        // wenn rechter TB existiert
+        // 3. wenn rechter TB existiert
         if (rechts != null) {
             // Füge den String vom (ganzen) rechten TB an
-            out = out + rechts.toStringSortiert();
+            out = out + rechts.toLNR();
         }
+
+        return out;
+    }
+
+    public String toLRN() {
+        String out = "";
+
+        // 1. linkes Kind existiert
+        if (links != null) { // null != 0
+            // Füge den String vom (ganzen) linken TB an
+            out = out + links.toLRN();
+        }
+
+        // 2. wenn rechter TB existiert
+        if (rechts != null) {
+            // Füge den String vom (ganzen) rechten TB an
+            out = out + rechts.toLRN();
+        }
+
+        // 3. Node
+        out = out + " " + data;
 
         return out;
     }
