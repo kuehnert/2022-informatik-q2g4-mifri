@@ -1,7 +1,11 @@
 package trees;
 
 public class BinBaum {
-    private Knoten wurzel;
+    public Knoten getWurzel() {
+        return wurzel;
+    }
+
+    protected Knoten wurzel;
 
     public BinBaum() {
         // Top-Down
@@ -31,6 +35,26 @@ public class BinBaum {
     // sonst null
     public Knoten suche(int gesucht) {
         return wurzel.suche(gesucht);
+    }
+
+    // Gesamtzahl der Knoten im Baum → Knoten
+    public int anzahl() {
+        return wurzel.anzahl();
+    }
+
+    // Ist die Anzahl der Kanten von der Wurzel zum
+    // „tiefsten“ Blatt
+    public int tiefe() {
+        return wurzel.tiefe();
+    }
+
+    @Override
+    public String toString() {
+        return traverse(Knoten.LNR);
+    }
+
+    public String traverse(int methode) {
+        return wurzel.traverse(methode);
     }
 
     public static void main(String[] args) {

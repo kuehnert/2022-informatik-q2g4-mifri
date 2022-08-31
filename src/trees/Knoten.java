@@ -19,10 +19,10 @@ class Knoten {
     }
 
     public String toString() {
-        return toString(LNR);
+        return "Knoten<" + data + ">";
     }
 
-    public String toString(int methode) {
+    public String traverse(int methode) {
         switch (methode) {
             case NLR:
                 return toNLR();
@@ -114,5 +114,19 @@ class Knoten {
         }
 
         return null;
+    }
+
+    // Gesamtzahl der Knoten im Baum → Knoten
+    public int anzahl() {
+        throw new IllegalStateException("Hausaufgabe!");
+        // Lösungsidee
+        // Die Anzahl ist die Anzahl von Knoten im linken TB
+        // plus die Anzahl Knoten im rechten TB plus 1
+    }
+
+    // Ist die Anzahl der Kanten von der Wurzel zum
+    // „tiefsten“ Blatt
+    public int tiefe() {
+        throw new IllegalStateException("Hausaufgabe!");
     }
 }

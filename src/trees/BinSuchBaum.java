@@ -1,11 +1,8 @@
 package trees;
 
-import javax.swing.*;
 import java.util.Arrays;
 
-public class BinSuchBaum {
-    Knoten wurzel;
-
+public class BinSuchBaum extends BinBaum {
     public BinSuchBaum(String zahlenString) {
         String[] zahlen = zahlenString.split(" ");
         System.out.println(Arrays.toString(zahlen));
@@ -50,16 +47,51 @@ public class BinSuchBaum {
     }
 
     @Override
-    public String toString() {
-        return wurzel.toString();
+    public Knoten suche(int gesucht) {
+        Knoten runner = wurzel;
+
+        while (true) {
+            if (gesucht == runner.data) {
+                return runner;
+            } else if (gesucht < runner.data) {
+                if (runner.links == null) {
+                    return null;
+                } else {
+                    runner = runner.links;
+                }
+            } else {
+                // gesucht ist größer als die Zahl am akt. Knoten
+                if (runner.rechts == null) {
+                    return null;
+                } else {
+                    runner = runner.rechts;
+                }
+            }
+        }
     }
 
-    public String toString(int methode) {
-        return wurzel.toString(methode);
+    public Knoten suche2(int gesucht) {
+        Knoten runner = wurzel;
+
+        while (runner != null && runner.data != gesucht) {
+            if (gesucht < runner.data) {
+                runner = runner.links;
+            } else {
+                // gesucht ist größer als die Zahl am akt. Knoten
+                runner = runner.rechts;
+            }
+        }
+
+        return runner;
     }
 
     public static void main(String[] args) {
-        BinSuchBaum b = new BinSuchBaum("8 5 4 6 10 2 1 3 7");
-        System.out.println(b.toString(Knoten.LNR));
+        BinSuchBaum bsb = new BinSuchBaum("8 5 4 6 10 2 1 3 7");
+        bsb.wurzel.toString();
+        System.out.println(bsb.traverse(Knoten.LNR));
+        System.out.println("suche1: " + bsb.suche(6));
+        System.out.println("suche2: " + bsb.suche2(6));
+        System.out.println("suche1: " + bsb.suche(11));
+        System.out.println("suche2: " + bsb.suche2(11));
     }
 }
