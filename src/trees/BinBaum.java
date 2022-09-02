@@ -20,13 +20,13 @@ public class BinBaum {
 
     // Gesamtzahl der Knoten im Baum → Knoten
     public int anzahl() {
-        return wurzel.anzahl();
+        return wurzel == null ? 0 : wurzel.anzahl();
     }
 
     // Ist die Anzahl der Kanten von der Wurzel zum
     // „tiefsten“ Blatt
     public int tiefe() {
-        return wurzel.tiefe();
+        return wurzel == null ? -1 : wurzel.tiefe();
     }
 
     @Override

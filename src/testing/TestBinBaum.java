@@ -28,9 +28,12 @@ public class TestBinBaum {
         BinBaum bn = new BinBaum(13);
         bn.getWurzel().links = new Knoten(5);
         bn.getWurzel().rechts = new Knoten(27);
+        System.out.println(bn.anzahl());
+        System.out.println(bn.tiefe());
         System.out.println(bn);
 
         System.out.println(new BinBaum().anzahl());
+        System.out.println(new BinBaum().tiefe());
     }
 
     public static void main(String[] args) {
