@@ -1,12 +1,12 @@
 package trees;
 
-class Knoten {
+public class Knoten {
     public static final int LNR = 0;
     public static final int LRN = 1;
     public static final int NLR = 2;
-    int data;
-    Knoten links;
-    Knoten rechts;
+    public int data;
+    public Knoten links;
+    public Knoten rechts;
 
     public Knoten(int data) {
         this.data = data;
@@ -118,11 +118,15 @@ class Knoten {
 
     // Gesamtzahl der Knoten im Baum → Knoten
     public int anzahl() {
-        throw new IllegalStateException("Hausaufgabe!");
         // Lösungsidee
         // Die Anzahl ist die Anzahl von Knoten im linken TB
         // plus die Anzahl Knoten im rechten TB plus 1
-    }
+        int anzahl = 1;
+
+        anzahl += links == null ? 0 : links.anzahl();
+        anzahl += rechts == null ? 0 : rechts.anzahl();
+
+        return anzahl;    }
 
     // Ist die Anzahl der Kanten von der Wurzel zum
     // „tiefsten“ Blatt
