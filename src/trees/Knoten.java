@@ -132,25 +132,9 @@ public class Knoten {
     // Ist die Anzahl der Kanten von der Wurzel zum
     // „tiefsten“ Blatt
     public int tiefe() {
-        // HA: Verwandel dies in einen 1-Zeiler
-        return -10000;
+        int t1 = links != null ? links.tiefe() + 1 : 0;
+        int t2 = rechts != null ? rechts.tiefe() + 1 : 0;
 
-        /*
-            int t1 = 0;
-            int t2 = 0;
-            if (links != null) {
-                t1 = links.tiefe() + 1;
-            }
-
-            if (rechts != null) {
-                t2 = rechts.tiefe() + 1;
-            }
-
-            if (t1 > t2) {
-                return t1;
-            } else {
-                return t2;
-            }
-        */
+        return Integer.max(t1, t2);
     }
 }
