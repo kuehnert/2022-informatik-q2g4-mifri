@@ -48,18 +48,18 @@ public class ExperteMarius extends Expertensystem {
                 return new Frage(input.substring(startIndex, i), ja, nein);
             }
         }
-        // Keine Funktion, nur zur vermeidung eines Fehlers
-        return null;
+        // Return die Wurzel...
+        return new Frage(input.substring(startIndex), ja, nein);
     }
 
     public static void main(String[] args) {
         Expertensystem es = new Expertensystem();
         String in = es.exportieren();
         System.out.println(in);
-        System.out.println("Eingabe: "+ in);
+        System.out.println("Eingabe: " + in);
         System.out.println("-------------------------------");
 
         ExperteMarius em = new ExperteMarius(in);
-        System.out.println("Ausgabe: "+ em.exportieren());
+        System.out.println("Ausgabe: " + em.exportieren());
     }
 }
