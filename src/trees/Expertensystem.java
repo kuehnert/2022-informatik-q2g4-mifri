@@ -4,12 +4,12 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Expertensystem {
-    Scanner eingabe;
-    Frage wurzel;
+    protected Scanner eingabe;
+    protected Frage wurzel;
 
     public Expertensystem() {
-        Frage fBeine = new Frage("Läuft es auf vier Beinen",
-                new Frage("Löwe"), new Frage("Känguru"));
+        Frage fBeine = new Frage("Laeuft es auf vier Beinen",
+                new Frage("Loewe"), new Frage("Kaenguru"));
         Frage fInsekt = new Frage("Ist es ein Insekt", new Frage("Fliege"),
                 new Frage("Papagei"));
         wurzel = new Frage("Ist es ein Saeugetier", fBeine, fInsekt);
@@ -38,6 +38,8 @@ public class Expertensystem {
     // Verwende Java-Serialisierung
 
     // 4. Besser nicht JSON
+
+    // 5. Finns Idee: Im Dateisystem ablegen
 
     public void spieleRunde() {
         // Schleife "willst Du nochmal spielen?"
@@ -73,31 +75,19 @@ public class Expertensystem {
     }
 
     public static void main(String[] args) {
-        new Expertensystem().spiele();
+        // new Expertensystem().spiele();
+        Expertensystem es = new Expertensystem();
+        String in = es.exportieren();
+        System.out.println(in);
     }
 
     public boolean jaNeinFrage(String frage) {
         System.out.print(frage + " (j/n)? ");
         return eingabe.nextLine().toLowerCase(Locale.ROOT).startsWith("j");
     }
-}
 
-class Frage {
-    String inhalt;
-    Frage ja;
-    Frage nein;
-
-    public Frage(String inhalt) {
-        this.inhalt = inhalt;
-    }
-
-    public Frage(String inhalt, Frage ja, Frage nein) {
-        this.inhalt = inhalt;
-        this.ja = ja;
-        this.nein = nein;
-    }
-
-    public boolean istBlatt() {
-        return ja == null; // && nein == null; -> unnoetig
+    public String exportieren() {
+        return wurzel.exportieren();
     }
 }
+
