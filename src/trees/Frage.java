@@ -22,7 +22,7 @@ class Frage implements Serializable {
     }
 
     public String exportieren() {
-        String out = "";
+        String out = inhalt;
 
         if (ja != null) {
             out += "<" + ja.exportieren() + ">";
@@ -31,8 +31,6 @@ class Frage implements Serializable {
         if (nein != null) {
             out += "[" + nein.exportieren() + "]";
         }
-
-        out += inhalt;
 
         return out;
     }

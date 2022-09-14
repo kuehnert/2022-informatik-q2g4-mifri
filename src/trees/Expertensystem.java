@@ -90,4 +90,3 @@ public class Expertensystem {
         return wurzel.exportieren();
     }
 }
-
