@@ -3,6 +3,7 @@ package network;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // TODO: Name und Passwort über Parameter einlesen
@@ -69,12 +70,36 @@ public class POP3Client {
             System.err.println("Fehler beim Passwort");
             System.exit(1);
         }
-
-
     }
 
     public void listeMails() {
-        System.out.println("listeMail()");
+        System.out.println("listeMails()");
+
+        writer.println("LIST");
+        String antwort = "";
+        ArrayList<Integer> mailIds = new ArrayList<>();
+
+        do {
+            antwort = reader.nextLine();
+            if (antwort.equals("")) {
+                // Ignoriere leere Zeilen
+                continue;
+            } else if (antwort.matches("^[0-9]+ .+")) {
+                // antwort beginnt mit >= 1 Ziffern
+                String idImString = antwort.split(" ")[0];
+                int id = Integer.parseInt(idImString);
+                mailIds.add(id);
+            }
+
+            System.out.println(antwort);
+        } while (!antwort.equals("."));
+
+        System.out.println("Hole Mails mit IDs " + mailIds);
+        for (int id : mailIds) {
+            leseMail(id);
+        }
+
+        System.out.println("ENDE listeMails()");
     }
 
     /**
@@ -82,8 +107,8 @@ public class POP3Client {
      *
      * @param index
      */
-    public void leseMail(int index) {
-        System.out.println("leseMail()");
+    public void leseMail(int id) {
+        System.out.println("leseMail(" + id + ")");
     }
 
     public void trenneVerbindung() {
