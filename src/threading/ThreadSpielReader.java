@@ -1,25 +1,31 @@
 package threading;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
-import java.util.Scanner;
 
-public class ThreadSpiel {
-    AufgabenstellerReader aufgabensteller;
-    Scanner tastatur = new Scanner(System.in);
+public class ThreadSpielReader {
+    AufgabenstellerReader aufgabenstellerReader;
 
-    public ThreadSpiel() {
-        aufgabensteller = new AufgabenstellerReader();
+    BufferedReader reader =
+            new BufferedReader(new InputStreamReader(System.in));
+
+    public ThreadSpielReader() {
+        aufgabenstellerReader = new AufgabenstellerReader();
     }
 
     public void starteSpiel() {
         int zaehler = 10;
         System.out.println("Starte Spiel");
         // Spiel dauert 10 Sekunden
-        aufgabensteller.start();
+        aufgabenstellerReader.start();
 
         while (zaehler > 0) {
             System.out.println(zaehler);
-            String eingabe = tastatur.nextLine();
+
+            if (reader.)
+
             System.out.println(eingabe);
             try {
                 Thread.sleep(100);
@@ -29,7 +35,7 @@ public class ThreadSpiel {
             zaehler--;
         }
 
-        aufgabensteller.stop();
+        aufgabenstellerReader.stop();
         System.out.println("Spiel beendet");
     }
 
@@ -38,11 +44,11 @@ public class ThreadSpiel {
     }
 }
 
-class Aufgabensteller extends Thread {
+class AufgabenstellerReader extends Thread {
     private static Random gen = new Random();
     public char zeichen;
 
-    public Aufgabensteller() {
+    public AufgabenstellerReader() {
     }
 
     public void run() {
