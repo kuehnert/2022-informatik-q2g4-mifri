@@ -109,6 +109,28 @@ public class POP3Client {
      */
     public void leseMail(int id) {
         System.out.println("leseMail(" + id + ")");
+
+        // Sende "RETR <id>", "RETR 4"
+        writer.println("RETR " + id);
+
+        // Wenn Antwort mit "-ERR" beginnt, gib Fehlermeldung
+        // und beende Methode
+        String zeile = reader.nextLine();
+        if (zeile.startsWith("-ERR")) {
+            System.err.println("Mail micht bekannt");
+            return;
+        }
+
+        // Gib Antwort zeilenweise aus
+        // Bis ein "." zurückgegeben wird
+        while (!zeile.equals(".")) {
+            zeile = reader.nextLine();
+            if (!zeile.equals("")) {
+                System.out.println(zeile);
+            }
+        }
+
+        System.out.println("Ende von E-Mail " + id);
     }
 
     public void trenneVerbindung() {
