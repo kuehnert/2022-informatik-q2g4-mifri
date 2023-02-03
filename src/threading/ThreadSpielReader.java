@@ -1,7 +1,6 @@
 package threading;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
@@ -15,6 +14,10 @@ public class ThreadSpielReader {
         aufgabenstellerReader = new AufgabenstellerReader();
     }
 
+    public static void main(String[] args) {
+        new ThreadSpielReader().starteSpiel();
+    }
+
     public void starteSpiel() {
         int zaehler = 10;
         System.out.println("Starte Spiel");
@@ -24,9 +27,9 @@ public class ThreadSpielReader {
         while (zaehler > 0) {
             System.out.println(zaehler);
 
-            if (reader.)
+            // if (reader.)
+            // System.out.println(eingabe);
 
-            System.out.println(eingabe);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -38,14 +41,10 @@ public class ThreadSpielReader {
         aufgabenstellerReader.stop();
         System.out.println("Spiel beendet");
     }
-
-    public static void main(String[] args) {
-        new ThreadSpielReader().starteSpiel();
-    }
 }
 
 class AufgabenstellerReader extends Thread {
-    private static Random gen = new Random();
+    private static final Random gen = new Random();
     public char zeichen;
 
     public AufgabenstellerReader() {
