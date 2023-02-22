@@ -12,11 +12,13 @@ public class DaytimeServer {
         // 1. Der Server öffnet sein Geschäft
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(10013);
+            serverSocket = new ServerSocket(10007);
         } catch (IOException e) {
             System.err.println("FEHLER: Server konnte nicht erstellt werden.");
             System.exit(1);
         }
+
+        System.out.println("Daytime-Server gestartet.");
 
         while (true) {
             // 2. Warte auf einen Kunden und verbinde Dich mit ihm
@@ -28,7 +30,7 @@ public class DaytimeServer {
                 String uhrzeit = new Date().toString();
                 writer.println(uhrzeit);
                 writer.flush();
-                System.out.println(clientVerbindung.getInetAddress().toString() + " " + uhrzeit);
+                System.out.println(clientVerbindung.getInetAddress().toString().substring(1) + ": " + uhrzeit);
                 clientVerbindung.close();
             } catch (IOException e) {
                 System.err.println("FEHLER: Verbindung mit Client konnte " +
